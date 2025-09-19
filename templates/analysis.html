@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Exploratory Analysis</h2>
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card nova-card">
+      <div class="card-header">Target Distribution</div>
+      <div class="card-body">
+        <img class="img-fluid rounded" src="{{ url_for('static', filename=img1) }}" alt="Target Distribution">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card nova-card">
+      <div class="card-header">Feature Correlations</div>
+      <div class="card-body">
+        <img class="img-fluid rounded" src="{{ url_for('static', filename=img2) }}" alt="Correlations">
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card nova-card">
+      <div class="card-header">Feature Histograms</div>
+      <div class="card-body">
+        <img class="img-fluid rounded" src="{{ url_for('static', filename=img3) }}" alt="Histograms">
+      </div>
+    </div>
+  </div>
+ </div>
+{% endblock %}
+
+

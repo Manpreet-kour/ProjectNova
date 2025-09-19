@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Interactive Credit Scoring</h2>
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card nova-card">
+      <div class="card-header">Applicant Inputs</div>
+      <div class="card-body">
+        <form method="post" class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" name="age" min="18" max="80" step="1" value="30">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Gender</label>
+            <select class="form-select" name="gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Earnings (annual, USD)</label>
+            <input type="number" class="form-control" name="earnings" min="10000" step="1000" value="50000">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Trips per year</label>
+            <input type="number" class="form-control" name="trips" min="0" step="1" value="200">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Rating (1-5)</label>
+            <input type="number" class="form-control" name="rating" min="1" max="5" step="0.1" value="4.5">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Tenure (months)</label>
+            <input type="number" class="form-control" name="tenure_months" min="0" step="1" value="12">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Cancellation Rate (0-1)</label>
+            <input type="number" class="form-control" name="cancellation_rate" min="0" max="1" step="0.01" value="0.05">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">City Tier</label>
+            <select class="form-select" name="city_tier">
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Past Defaults</label>
+            <input type="number" class="form-control" name="past_defaults" min="0" max="10" step="1" value="0">
+          </div>
+          <div class="col-12">
+            <button class="btn btn-success">Predict Creditworthiness</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card nova-card">
+      <div class="card-header">Result</div>
+      <div class="card-body">
+        {% if result %}
+          <div class="alert {{ 'alert-success' if result.prediction == 'Good Credit' else 'alert-danger' }}">
+            <strong>{{ result.prediction }}</strong> — Probability: {{ '%.3f'|format(result.probability) }}
+          </div>
+          {% if shap_img %}
+          <img class="img-fluid rounded" src="{{ url_for('static', filename=shap_img) }}" alt="SHAP Plot">
+          {% endif %}
+        {% else %}
+          <div class="text-muted">Fill the form and click Predict.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+ </div>
+{% endblock %}
+
+

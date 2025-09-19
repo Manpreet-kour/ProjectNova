@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="m-0">Models</h2>
+  <form method="post">
+    <button class="btn btn-primary">Train / Retrain Models</button>
+  </form>
+ </div>
+
+ {% if metrics %}
+ <div class="row g-3">
+   <div class="col-md-4">
+     <div class="card nova-card h-100">
+       <div class="card-header">Best Model</div>
+       <div class="card-body">
+         <p class="mb-1"><strong>Name</strong>: {{ best_name }}</p>
+         <p class="mb-1"><strong>Accuracy</strong>: {{ '%.3f'|format(metrics.accuracy) }}</p>
+         <p class="mb-0"><strong>ROC AUC</strong>: {{ '%.3f'|format(metrics.roc_auc) }}</p>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-8">
+     <div class="card nova-card h-100">
+       <div class="card-header">Classification Report (best)</div>
+       <div class="card-body">
+         <pre class="mb-0 small">{{ metrics.classification_report }}</pre>
+       </div>
+     </div>
+   </div>
+ </div>
+ {% else %}
+ <div class="alert alert-info">No model trained yet. Click "Train / Retrain Models" to start.</div>
+ {% endif %}
+
+ {% if all_models %}
+ <h4 class="mt-4">All Models</h4>
+ <div class="row g-3">
+   {% for name, m in all_models.items() %}
+   <div class="col-md-6">
+     <div class="card nova-card h-100">
+       <div class="card-header">{{ name }}</div>
+       <div class="card-body">
+         <p class="mb-1"><strong>Accuracy</strong>: {{ '%.3f'|format(m.accuracy) }}</p>
+         <p class="mb-1"><strong>ROC AUC</strong>: {{ '%.3f'|format(m.roc_auc) }}</p>
+         <pre class="small">{{ m.classification_report }}</pre>
+       </div>
+     </div>
+   </div>
+   {% endfor %}
+ </div>
+ {% endif %}
+{% endblock %}
+
+

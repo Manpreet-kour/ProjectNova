@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="m-0">Fairness Analysis</h2>
+  <form method="post">
+    <button class="btn btn-warning">Run Analysis</button>
+  </form>
+ </div>
+
+ {% if before %}
+ <div class="row g-3">
+   <div class="col-md-6">
+     <div class="card nova-card h-100">
+       <div class="card-header">Before Mitigation</div>
+       <div class="card-body">
+         <p class="mb-1"><strong>Selection Rate</strong></p>
+         <ul class="mb-2">
+           <li>Male: {{ '%.3f'|format(before.selection_rate['Male']) }}</li>
+           <li>Female: {{ '%.3f'|format(before.selection_rate['Female']) }}</li>
+         </ul>
+         <p class="mb-1"><strong>Accuracy</strong></p>
+         <ul class="mb-0">
+           <li>Male: {{ '%.3f'|format(before.accuracy['Male']) }}</li>
+           <li>Female: {{ '%.3f'|format(before.accuracy['Female']) }}</li>
+         </ul>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-6">
+     <div class="card nova-card h-100">
+       <div class="card-header">After Mitigation</div>
+       <div class="card-body">
+         <p class="mb-1"><strong>Selection Rate</strong></p>
+         <ul class="mb-2">
+           <li>Male: {{ '%.3f'|format(after.selection_rate['Male']) }}</li>
+           <li>Female: {{ '%.3f'|format(after.selection_rate['Female']) }}</li>
+         </ul>
+         <p class="mb-1"><strong>Accuracy</strong></p>
+         <ul class="mb-2">
+           <li>Male: {{ '%.3f'|format(after.accuracy['Male']) }}</li>
+           <li>Female: {{ '%.3f'|format(after.accuracy['Female']) }}</li>
+         </ul>
+         <p class="mb-0"><strong>Overall Accuracy</strong>: {{ '%.3f'|format(after.overall_accuracy) }}</p>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="card nova-card mt-3">
+   <div class="card-header">Selection Rate Comparison</div>
+   <div class="card-body">
+     <img class="img-fluid rounded" src="{{ url_for('static', filename=chart_path) }}" alt="Fairness Chart">
+   </div>
+ </div>
+ {% else %}
+ <div class="alert alert-info">Click "Run Analysis" to compute fairness metrics and mitigation.</div>
+ {% endif %}
+{% endblock %}
+
+

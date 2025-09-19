@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="p-5 rounded-3 nova-hero mb-4">
+  <div class="container py-3">
+    <h1 class="display-5 fw-bold">Project Nova</h1>
+    <p class="lead mb-0">Equitable Credit Scoring Engine — transparent, auditable, and fair.</p>
+  </div>
+ </section>
+
+ <div class="row g-4">
+   <div class="col-md-4">
+     <div class="card nova-card h-100">
+       <div class="card-body">
+         <h5 class="card-title">Data</h5>
+         <p class="card-text">Preview and regenerate the synthetic dataset powering Nova.</p>
+         <a href="/data" class="btn btn-primary">Explore Data</a>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-4">
+     <div class="card nova-card h-100">
+       <div class="card-body">
+         <h5 class="card-title">Analysis</h5>
+         <p class="card-text">Visualize distributions, correlations, and feature patterns.</p>
+         <a href="/analysis" class="btn btn-primary">View Analysis</a>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-4">
+     <div class="card nova-card h-100">
+       <div class="card-body">
+         <h5 class="card-title">Models</h5>
+         <p class="card-text">Train Logistic Regression and XGBoost; compare performance.</p>
+         <a href="/models" class="btn btn-primary">Train Models</a>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="row g-4 mt-1">
+   <div class="col-md-6">
+     <div class="card nova-card h-100">
+       <div class="card-body">
+         <h5 class="card-title">Fairness</h5>
+         <p class="card-text">Assess selection and accuracy disparity by gender and mitigate.</p>
+         <a href="/fairness" class="btn btn-primary">Run Fairness</a>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-6">
+     <div class="card nova-card h-100">
+       <div class="card-body">
+         <h5 class="card-title">Interactive Demo</h5>
+         <p class="card-text">Score hypothetical applicants and explain predictions with SHAP.</p>
+         <a href="/demo" class="btn btn-success">Try the Demo</a>
+       </div>
+     </div>
+   </div>
+ </div>
+{% endblock %}
+
+
