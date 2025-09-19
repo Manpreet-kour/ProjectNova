@@ -2,9 +2,13 @@
 
 A comprehensive web application for credit scoring analysis with machine learning models, fairness assessment, and interactive data visualization.
 
+<img width="1702" height="877" alt="image" src="https://github.com/user-attachments/assets/c5cea9df-c20b-492d-8d18-a1196b677a96" />
+
+
 ## Features
 
 - **Interactive Credit Scoring**: Real-time creditworthiness prediction with SHAP explanations
+  
 - **Data Management**: Generate synthetic datasets and download CSV files
 - **Model Training**: Train and compare multiple ML models (Logistic Regression, XGBoost)
 - **Fairness Analysis**: Assess and mitigate bias in credit scoring decisions
